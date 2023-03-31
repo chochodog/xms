@@ -20,7 +20,8 @@ public class MenuManager {
 			
 			/*
 			 * switch문을 통해, 위 번호 중 하나를 선택했을 때를 case로 나누어서 활동을 가능하게 하고
-			 * 활동이 끝나면 break를 통해 swich문을 끝내고 메뉴가 출력가능하도록 함.
+			 * 활동이 끝나면 break를 통해 switch문을 끝내고 메뉴가 출력가능하도록 함.
+			 * 각 switch문은 각 메소드를 통해 작동한다.
 			 */
 			switch(num) {
 			case 1:
