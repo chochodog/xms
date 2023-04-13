@@ -8,7 +8,7 @@ public class MenuManager {
 		int num =0;
 		Scanner sc = new Scanner(System.in);
 		ClientManager ClientManager = new ClientManager(sc);
-		// 반복문을 통해 5.Exit가 아닐 경우, 선택지에서의 활동 후에 메뉴가 다시 출력되도록함.
+		// 반복문을 통해 6.Exit가 아닐 경우, 선택지에서의 활동 후에 메뉴가 다시 출력되도록함.
 		while(num != 6) {
 			System.out.println("Menu");
 			System.out.println("\t1.New Account");
