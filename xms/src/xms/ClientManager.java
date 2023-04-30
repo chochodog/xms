@@ -3,6 +3,9 @@ package xms;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import client.Client;
+import client.HighSchoolClient;
+
 public class ClientManager {
 	ArrayList<Client> clients = new ArrayList<Client>();
 	Scanner sc;
@@ -14,15 +17,29 @@ public class ClientManager {
 	 * 고객의 id,이름,계좌를 입력받아 데이터로 등록하기 위한 메소드
 	 */
 	public void addClient() {
-		Client client = new Client();
-		System.out.print("등록할 고객의 ID를 적어주세요 : ");
-		client.id = sc.nextInt(); //sc.next면 문자열 중 제일 앞의 단어만 받아들임.
-		System.out.print("등록할 고객의 이름을 적어주세요 : ");
-		client.name = sc.next();
-		System.out.print("등록할 고객의 계좌를 적어주세요 : ");
-		client.account = sc.nextInt();
-		System.out.print("정보 등록이 완료되었습니다.\n");
-		clients.add(client);
+		int kind = 0;
+		Client client;
+		while(kind !=1 && kind !=2) {
+			System.out.print("대학생이라면 1번을 선택해 주세요. ");
+			System.out.print("고등학생이라면 2번을 선택해 주세요. ");
+			System.out.print("고객의 현 소속 학교가 어디인가요? 1번과 2번 중에 선택해 주세요.");
+			kind = sc.nextInt();
+			if(kind == 1) {
+				client = new Client();
+				client.getUserInput(sc);
+				clients.add(client);
+				break;
+			}
+			else if(kind == 2) {
+				client = new HighSchoolClient();
+				client.getUserInput(sc);
+				clients.add(client);
+				break;
+			}
+			else {
+				System.out.print("고객의 현 소속 학교가 어디인가요? 1번과 2번 중에 선택해 주세요.");
+			}
+		}
 	}
 	/**
 	 * 고객의 id와 이름을 입력받아서 해당 데이터를 제거하기 위한 메소드
@@ -32,7 +49,7 @@ public class ClientManager {
 		int clientId20 = sc.nextInt();
 		int index = -1; // 인덱스를 못찾았다는 의미
 		for(int i =0; i<clients.size(); i++) {
-			if(clients.get(i).id == clientId20) {
+			if(clients.get(i).getId() == clientId20) {
 				index = i;
 				break;
 			}
@@ -57,6 +74,7 @@ public class ClientManager {
 		for(int i =0; i<clients.size(); i++) {
 			clients.get(i).printInfo();
 		}
+		System.out.println("현재 등록된 고객 수 는 "+clients.size()+"명 입니다.");
 	}
 	
 	public void edit() {
@@ -64,7 +82,7 @@ public class ClientManager {
 		int clientId = sc.nextInt();
 		for(int i=0; i<clients.size(); i++) {
 			Client client = clients.get(i);
-			if (client.id == clientId) {
+			if (client.getId() == clientId) {
 				int num = -1;
 				while (num != 5) {
 					System.out.println("Client info Edit menu");
@@ -77,19 +95,23 @@ public class ClientManager {
 					num = sc.nextInt();
 					if( num == 1) {
 						System.out.print("Client ID : ");
-						client.id = sc.nextInt();
+						int id = sc.nextInt();
+						client.setId(id);
 					}
 					else if ( num == 2) {
 						System.out.print("Client name : ");
-						client.name = sc.next();
+						String name = sc.next();
+						client.setName(name);
 					}
 					else if (num == 3) {
 						System.out.print("Client account : ");
-						client.account = sc.nextInt();
+						int account = sc.nextInt();
+						client.setAccount(account);
 					}
 					else if(num == 4) {
 						System.out.print("Client Money : ");
-						client.money = sc.nextInt();
+						int money = sc.nextInt();
+						client.setMoney(money);
 					}
 					else continue;
 				}
@@ -105,7 +127,7 @@ public class ClientManager {
 		int clientId40 = sc.nextInt();
 		int index = -1;
 		for(int i =0; i<clients.size(); i++) {
-			if( clients.get(i).id == clientId40) {
+			if( clients.get(i).getId() == clientId40) {
 			index = i;
 			}
 		}
@@ -114,7 +136,7 @@ public class ClientManager {
 		
 		//조건문을 통해 입력된 번호가 1이면 인출을, 2면 입금을 수행하고 그 외의 번호는 잘못된 번호라고 출력한다.
 		if(moneySelect == 1) {
-			if(clients.get(index).money <= 0) {
+			if(clients.get(index).getMoney() <= 0) {
 				System.out.println("잔금이 없습니다.");
 				return;
 			}
@@ -122,14 +144,14 @@ public class ClientManager {
 				System.out.print("인출할 금액을 적어주세요 : ");
 				int outMoney = sc.nextInt();
 				clients.get(index).outMoney(outMoney);
-				System.out.println("인출이 완료되었습니다. 현재 금액 : "+ clients.get(index).money);
+				System.out.println("인출이 완료되었습니다. 현재 금액 : "+ clients.get(index).getMoney());
 			}
 		}
 		else if(moneySelect == 2) {
 			System.out.print("입금할 금액을 적어주세요 : ");
 			int inMoney = sc.nextInt();
 			clients.get(index).inMoney(inMoney);
-			System.out.println("입금이 완료되었습니다. 현재 금액 : "+clients.get(index).money);
+			System.out.println("입금이 완료되었습니다. 현재 금액 : "+clients.get(index).getMoney());
 		}
 		else {
 			System.out.println("잘못된 번호입니다.");
