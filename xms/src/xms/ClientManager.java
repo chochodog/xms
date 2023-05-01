@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import client.Client;
+import client.ElementalSchoolClient;
 import client.HighSchoolClient;
+import client.MiddleSchoolClient;
 
 public class ClientManager {
 	ArrayList<Client> clients = new ArrayList<Client>();
@@ -22,7 +24,9 @@ public class ClientManager {
 		while(kind !=1 && kind !=2) {
 			System.out.print("대학생이라면 1번을 선택해 주세요. ");
 			System.out.print("고등학생이라면 2번을 선택해 주세요. ");
-			System.out.print("고객의 현 소속 학교가 어디인가요? 1번과 2번 중에 선택해 주세요.");
+			System.out.print("중학생이라면 3번을 선택해 주세요. ");
+			System.out.print("초등학생이라면 4번을 선택해 주세요. ");
+			System.out.print("고객의 현 소속 학교가 어디인가요? 1~4번 중에 선택해 주세요.");
 			kind = sc.nextInt();
 			if(kind == 1) {
 				client = new Client();
@@ -36,8 +40,20 @@ public class ClientManager {
 				clients.add(client);
 				break;
 			}
+			else if(kind == 3) {
+				client = new MiddleSchoolClient();
+				client.getUserInput(sc);
+				clients.add(client);
+				break;
+			}
+			else if(kind == 4) {
+				client = new ElementalSchoolClient();
+				client.getUserInput(sc);
+				clients.add(client);
+				break;
+			}
 			else {
-				System.out.print("고객의 현 소속 학교가 어디인가요? 1번과 2번 중에 선택해 주세요.");
+				System.out.print("고객의 현 소속 학교가 어디인가요? 1~4번 중에 선택해 주세요.");
 			}
 		}
 	}

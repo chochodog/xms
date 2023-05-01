@@ -2,7 +2,7 @@ package client;
 
 import java.util.Scanner;
 
-public class HighSchoolClient extends Client {
+public class ElementalSchoolClient extends Client {
 	protected int phoneParents;
 
 
@@ -32,6 +32,6 @@ public class HighSchoolClient extends Client {
 		System.out.print("정보 등록이 완료되었습니다.\n");
 	}
 	public void printInfo() {
-		System.out.println("name : "+name+", id: "+id+", account : "+account+", money : "+money+", parent phoneNumber : "+phoneParents+" 고등학생");
+		System.out.println("name : "+name+", id: "+id+", account : "+account+", money : "+money+", parent phoneNumber : "+phoneParents+" 초등학생");
 	}
 }

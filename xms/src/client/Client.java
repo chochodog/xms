@@ -69,7 +69,7 @@ public class Client {
 	}
 	
 	public void printInfo() {
-		System.out.println("name : "+name+", id: "+id+", account : "+account+", money : "+money);
+		System.out.println("name : "+name+", id: "+id+", account : "+account+", money : "+money+" 대학생");
 	}//this.name으로 써도 상관X
 	
 	public void getUserInput(Scanner sc) {
