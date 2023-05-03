@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Client {
 
-	protected ClientKind kind = ClientKind.University;
+	protected ClientKind kind = ClientKind.UNIVERSITY;
 	protected String name;
 	protected int id;
 	protected int account;
@@ -12,8 +12,19 @@ public class Client {
 	
 	public Client() {
 	}
+	public Client(ClientKind kind) {
+		this.kind = kind;
+	}
 	
 	public Client(String name, int id, int account, int money){
+		this.name = name;
+		this.id = id;
+		this.account = account;
+		this.money = money;
+	}
+	
+	public Client(ClientKind kind,String name, int id, int account, int money){
+		this.kind = kind;
 		this.name = name;
 		this.id = id;
 		this.account = account;
@@ -69,12 +80,28 @@ public class Client {
 	}
 	
 	public void printInfo() {
-		System.out.println("name : "+name+", id: "+id+", account : "+account+", money : "+money+" 대학생");
+		String skind ="none";
+		switch (kind) {
+		case UNIVERSITY :
+			skind = "대학생";
+			break;
+		case HIGHSCHOOL :
+			skind = "고등학생";
+			break;
+		case MIDDLESCHOOL :
+			skind = "중학생";
+			break;
+		case ELEMENTAL :
+			skind = "초등학생";
+			break;
+		default:
+		}
+		System.out.println(skind+", name : "+name+", id: "+id+", account : "+account+", money : "+money);
 	}//this.name으로 써도 상관X
 	
 	public void getUserInput(Scanner sc) {
 		System.out.print("등록할 고객의 Id를 적어주세요 : ");
-		int id = sc.nextInt(); //sc.next면 문자열 중 제일 앞의 단어만 받아들임.
+		int id = sc.nextInt();
 		this.setId(id); 
 		System.out.print("등록할 고객의 이름을 적어주세요 : ");
 		String name = sc.next();

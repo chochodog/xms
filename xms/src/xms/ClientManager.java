@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import client.Client;
+import client.ClientKind;
 import client.ElementalSchoolClient;
 import client.HighSchoolClient;
 import client.MiddleSchoolClient;
@@ -29,25 +30,25 @@ public class ClientManager {
 			System.out.print("고객의 현 소속 학교가 어디인가요? 1~4번 중에 선택해 주세요.");
 			kind = sc.nextInt();
 			if(kind == 1) {
-				client = new Client();
+				client = new Client(ClientKind.UNIVERSITY);
 				client.getUserInput(sc);
 				clients.add(client);
 				break;
 			}
 			else if(kind == 2) {
-				client = new HighSchoolClient();
+				client = new HighSchoolClient(ClientKind.HIGHSCHOOL);
 				client.getUserInput(sc);
 				clients.add(client);
 				break;
 			}
 			else if(kind == 3) {
-				client = new MiddleSchoolClient();
+				client = new MiddleSchoolClient(ClientKind.MIDDLESCHOOL);
 				client.getUserInput(sc);
 				clients.add(client);
 				break;
 			}
 			else if(kind == 4) {
-				client = new ElementalSchoolClient();
+				client = new ElementalSchoolClient(ClientKind.ELEMENTAL);
 				client.getUserInput(sc);
 				clients.add(client);
 				break;
