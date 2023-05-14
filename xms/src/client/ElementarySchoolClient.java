@@ -2,14 +2,14 @@ package client;
 
 import java.util.Scanner;
 
-public class ElementalSchoolClient extends Client {
-	protected ClientKind kind = ClientKind.ELEMENTAL;
+public class ElementarySchoolClient extends Client implements ClientInput {
+	protected ClientKind kind = ClientKind.ELEMENTARY;
 	protected String phoneParents;
 	protected String schoolName;
 	protected String phoneTeacher;
 
 	
-	public ElementalSchoolClient(ClientKind kind) {
+	public ElementarySchoolClient(ClientKind kind) {
 		super(kind);
 	}
 	
@@ -90,7 +90,7 @@ public class ElementalSchoolClient extends Client {
 		case MIDDLESCHOOL :
 			skind = "중학생";
 			break;
-		case ELEMENTAL :
+		case ELEMENTARY :
 			skind = "초등학생";
 			break;
 		default:

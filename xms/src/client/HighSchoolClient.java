@@ -2,7 +2,7 @@ package client;
 
 import java.util.Scanner;
 
-public class HighSchoolClient extends Client {
+public class HighSchoolClient extends Client implements ClientInput {
 	protected ClientKind kind = ClientKind.HIGHSCHOOL;
 	protected String phoneParents;
 
@@ -31,7 +31,7 @@ public class HighSchoolClient extends Client {
 				break;
 			}
 			else if(answer == 'N' || answer == 'n') {
-				this.setPhoneParents("");
+				this.setPhoneParents("없음");
 				break;
 			}
 			else {
@@ -49,22 +49,22 @@ public class HighSchoolClient extends Client {
 		System.out.print("정보 등록이 완료되었습니다.\n");
 	}
 	public void printInfo() {
-		String skind ="none";
-		switch (kind) {
+		String ckind ="none";
+		switch (this.kind) {
 		case UNIVERSITY :
-			skind = "대학생";
+			ckind = "대학생";
 			break;
 		case HIGHSCHOOL :
-			skind = "고등학생";
+			ckind = "고등학생";
 			break;
 		case MIDDLESCHOOL :
-			skind = "중학생";
+			ckind = "중학생";
 			break;
-		case ELEMENTAL :
-			skind = "초등학생";
+		case ELEMENTARY :
+			ckind = "초등학생";
 			break;
 		default:
 		}
-		System.out.println(skind+", name : "+name+", id: "+id+", account : "+account+", money : "+money+", parent phoneNumber : "+phoneParents);
+		System.out.println("Name: " + name + ", ID: " + id + ", Account: " + account + ", Money: " + money + ", Kind : " + ckind + ", Parent Phone Number: " + phoneParents);
 	}
 }
