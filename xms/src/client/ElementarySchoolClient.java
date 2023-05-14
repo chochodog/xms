@@ -55,7 +55,7 @@ public class ElementarySchoolClient extends Client implements ClientInput {
 				break;
 			}
 			else if(answer == 'N' || answer == 'n') {
-				this.setPhoneParents("");
+				this.setPhoneParents("없음");
 				break;
 			}
 			else {
