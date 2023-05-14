@@ -12,14 +12,14 @@ import client.MiddleSchoolClient;
 import client.UniversityClient;
 
 public class ClientManager {
-	
+
 	ArrayList<ClientInput> clients = new ArrayList<ClientInput>();
-	
+
 	Scanner sc;
 	ClientManager(Scanner sc) {
 		this.sc = sc;
 	}
-	
+
 	// 고객을 추가하는 메소드
 	public void addClient() {
 		int kind = 0;
@@ -60,7 +60,7 @@ public class ClientManager {
 			}
 		}
 	}
-	
+
 	// 고객을 삭제하는 메소드
 	public void deleteClient() {
 		System.out.print("삭제할 고객의 id를 입력하세요.: ");
@@ -80,7 +80,7 @@ public class ClientManager {
 			System.out.println(clientId + " 고객이 존재하지 않습니다.");
 			return;}
 	}
-	
+
 	// 고객 정보를 조회하는 메소드
 	public void viewClient() {
 		if(clients.isEmpty()) {
@@ -91,7 +91,7 @@ public class ClientManager {
 			clients.get(i).printInfo();
 		}
 	}
-	
+
 	// 고객 정보를 수정하는 메소드
 	public void edit() {
 		System.out.print("수정할 고객의 id를 입력하세요.: ");
@@ -131,49 +131,49 @@ public class ClientManager {
 					}
 					else continue;
 				}
+				break;
 			}
-			break;
 		}
 	}
-	
+
 	// 인출 입금 메소드
 	public void dwFunction() {
 		System.out.print("고객의 id를 입력하세요.: ");
 		int clientId = sc.nextInt();
 		int index = -1;
-		for(int i =0; i<clients.size(); i++) {
+		for(int i = 0; i < clients.size(); i++) {
 			if(clients.get(i).getId() == clientId) {
-			index = i;
+				index = i;
 			}
 		}
 		System.out.println("1. 인출");
 		System.out.println("2. 입금");
 		System.out.print("1 ~ 2 중 선택해주세요.: ");
 		int moneySelect = sc.nextInt();
-		
+
 		//조건문을 통해 입력된 번호가 1이면 인출을, 2면 입금을 수행하고 그 외의 번호는 잘못된 번호라고 출력한다.
 		if(moneySelect == 1) {
 			System.out.print("인출할 금액을 입력하세요 : ");
 			int outMoney = sc.nextInt();
-			
+
 			if(clients.get(index).getMoney() <= outMoney) {
 				System.out.println("잔액이 부족합니다.");
 				return;
 			}
 			else {
 				clients.get(index).outMoney(outMoney);
-				System.out.println("인출이 완료되었습니다. 현재 금액: "+ clients.get(index).getMoney());
+				System.out.println("인출이 완료되었습니다. 현재 금액: " + clients.get(index).getMoney());
 			}
 		}
 		else if(moneySelect == 2) {
 			System.out.print("입금할 금액을 입력하세요 : ");
 			int inMoney = sc.nextInt();
 			clients.get(index).inMoney(inMoney);
-			System.out.println("입금이 완료되었습니다. 현재 금액: "+clients.get(index).getMoney());
+			System.out.println("입금이 완료되었습니다. 현재 금액: " + clients.get(index).getMoney());
 		}
 		else {
 			System.out.println("잘못된 번호입니다.");
 		}
-		
+
 	}
 }

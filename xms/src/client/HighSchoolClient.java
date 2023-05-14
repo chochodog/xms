@@ -3,16 +3,17 @@ package client;
 import java.util.Scanner;
 
 public class HighSchoolClient extends Client implements ClientInput {
+	
 	protected ClientKind kind = ClientKind.HIGHSCHOOL;
 	protected String phoneParents;
 
 	public HighSchoolClient(ClientKind kind) {
 		super(kind);
 	}
+	
 	public String getPhoneParents() {
 		return phoneParents;
 	}
-
 
 	public void setPhoneParents(String phoneParents) {
 		this.phoneParents = phoneParents;
@@ -21,11 +22,11 @@ public class HighSchoolClient extends Client implements ClientInput {
 
 	public void getUserInput(Scanner sc) {
 		char answer = 'x';
-		while(answer != 'Y' && answer !='y' && answer != 'N' && answer !='n') {
-			System.out.print("부모님 전화번호가 있나요? (Y/N)");
-			answer = sc.next().charAt(0); // char를 입력받는 방법
+		while (answer != 'Y' && answer != 'y' && answer != 'N' && answer != 'n') {
+			System.out.print("부모님 전화번호가 있나요? (Y/N): ");
+			answer = sc.next().charAt(0);
 			if(answer == 'y' || answer == 'Y') {
-				System.out.print("부모님의 전화번호를 '-'기호 없이 써주세요.");
+				System.out.print("부모님의 전화번호를 '-'기호 없이 입력해주세요.: ");
 				String phone = sc.next();
 				this.setPhoneParents(phone);
 				break;
@@ -37,17 +38,21 @@ public class HighSchoolClient extends Client implements ClientInput {
 			else {
 			}
 		}
-		System.out.print("등록할 고객의 Id를 적어주세요 : ");
-		int id = sc.nextInt(); //sc.next면 문자열 중 제일 앞의 단어만 받아들임.
+		System.out.print("등록할 고객의 id를 입력해주세요.: ");
+		int id = sc.nextInt();
 		this.setId(id); 
-		System.out.print("등록할 고객의 이름을 적어주세요 : ");
+		
+		System.out.print("등록할 고객의 이름을 입력해주세요.: ");
 		String name = sc.next();
 		this.setName(name);
-		System.out.print("등록할 고객의 계좌를 적어주세요 : ");
+		
+		System.out.print("등록할 고객의 계좌번호를 입력해주세요.: ");
 		int account = sc.nextInt();
 		this.setAccount(account);
-		System.out.print("정보 등록이 완료되었습니다.\n");
+		
+		System.out.println("정보 등록이 완료되었습니다.");
 	}
+	
 	public void printInfo() {
 		String ckind ="none";
 		switch (this.kind) {
@@ -67,4 +72,5 @@ public class HighSchoolClient extends Client implements ClientInput {
 		}
 		System.out.println("Name: " + name + ", ID: " + id + ", Account: " + account + ", Money: " + money + ", Kind : " + ckind + ", Parent Phone Number: " + phoneParents);
 	}
+	
 }

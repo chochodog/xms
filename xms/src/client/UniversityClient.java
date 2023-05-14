@@ -2,22 +2,10 @@ package client;
 
 import java.util.Scanner;
 
-public class UniversityClient extends Client implements ClientInput{
-
+public class UniversityClient extends Client implements ClientInput {
+	
 	public UniversityClient(ClientKind kind) {
 		super(kind);
-	}
-	public void getUserInput(Scanner sc) {
-		System.out.print("등록할 고객의 Id를 적어주세요 : ");
-		int id = sc.nextInt();
-		this.setId(id); 
-		System.out.print("등록할 고객의 이름을 적어주세요 : ");
-		String name = sc.next();
-		this.setName(name);
-		System.out.print("등록할 고객의 계좌를 적어주세요 : ");
-		int account = sc.nextInt();
-		this.setAccount(account);
-		System.out.print("정보 등록이 완료되었습니다.\n");
 	}
 	
 	public void printInfo() {
@@ -39,4 +27,22 @@ public class UniversityClient extends Client implements ClientInput{
 		}
 		System.out.println("Name: " + name + ", ID: " + id + ", Account: " + account + ", Money: " + money + ", Kind : " + ckind);
 	}
+
+	public void getUserInput(Scanner sc) {
+		System.out.print("등록할 고객의 id를 입력해주세요.: ");
+		int id = sc.nextInt();
+		this.setId(id); 
+		
+		System.out.print("등록할 고객의 이름을 입력해주세요.: ");
+		String name = sc.next();
+		this.setName(name);
+		
+		System.out.print("등록할 고객의 계좌번호를 입력해주세요.: ");
+		int account = sc.nextInt();
+		this.setAccount(account);
+		
+		System.out.println("정보 등록이 완료되었습니다.");
+		
+	}
+	
 }
