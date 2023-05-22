@@ -1,6 +1,7 @@
 package xms;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import client.Client;
@@ -24,39 +25,47 @@ public class ClientManager {
 	public void addClient() {
 		int kind = 0;
 		ClientInput clientInput;
-		while (kind != 1 && kind != 2) {
-			System.out.println("1. 대학생");
-			System.out.println("2. 고등학생");
-			System.out.println("3. 중학생");
-			System.out.println("4. 초등학생");
-			System.out.print("1 ~ 4 중 등록할 고객의 유형을 선택해주세요.: ");
-			kind = sc.nextInt();
-			if (kind == 1) {
-				clientInput = new UniversityClient(ClientKind.UNIVERSITY);
-				clientInput.getUserInput(sc);
-				clients.add(clientInput);
-				break;
-			}
-			else if (kind == 2) {
-				clientInput = new HighSchoolClient(ClientKind.HIGHSCHOOL);
-				clientInput.getUserInput(sc);
-				clients.add(clientInput);
-				break;
-			}
-			else if (kind == 3) {
-				clientInput = new MiddleSchoolClient(ClientKind.MIDDLESCHOOL);
-				clientInput.getUserInput(sc);
-				clients.add(clientInput);
-				break;
-			}
-			else if (kind == 4) {
-				clientInput = new ElementarySchoolClient(ClientKind.ELEMENTARY);
-				clientInput.getUserInput(sc);
-				clients.add(clientInput);
-				break;
-			}
-			else {
+		while (kind < 1 || kind >4) {
+			try {
+				System.out.println("1. 대학생");
+				System.out.println("2. 고등학생");
+				System.out.println("3. 중학생");
+				System.out.println("4. 초등학생");
 				System.out.print("1 ~ 4 중 등록할 고객의 유형을 선택해주세요.: ");
+				kind = sc.nextInt();
+				if (kind == 1) {
+					clientInput = new UniversityClient(ClientKind.UNIVERSITY);
+					clientInput.getUserInput(sc);
+					clients.add(clientInput);
+					break;
+				}
+				else if (kind == 2) {
+					clientInput = new HighSchoolClient(ClientKind.HIGHSCHOOL);
+					clientInput.getUserInput(sc);
+					clients.add(clientInput);
+					break;
+				}
+				else if (kind == 3) {
+					clientInput = new MiddleSchoolClient(ClientKind.MIDDLESCHOOL);
+					clientInput.getUserInput(sc);
+					clients.add(clientInput);
+					break;
+				}
+				else if (kind == 4) {
+					clientInput = new ElementarySchoolClient(ClientKind.ELEMENTARY);
+					clientInput.getUserInput(sc);
+					clients.add(clientInput);
+					break;
+				}
+				else {
+					System.out.print("1 ~ 4 중 등록할 고객의 유형을 선택해주세요.: ");
+				}
+			}catch(InputMismatchException e) {
+				System.out.println("Please put an interger between 1~4");
+				if(sc.hasNext()) {
+					sc.next();
+				}
+				kind = -1;
 			}
 		}
 	}
@@ -65,6 +74,11 @@ public class ClientManager {
 	public void deleteClient() {
 		System.out.print("삭제할 고객의 id를 입력하세요.: ");
 		int clientId = sc.nextInt();
+		int index = findIndex(clientId);
+		removefromStudents(index, clientId);
+	}
+
+	public int findIndex(int clientId) {
 		int index = -1;
 		for(int i = 0; i < clients.size(); i++) {
 			if(clients.get(i).getId() == clientId) {
@@ -72,13 +86,19 @@ public class ClientManager {
 				break;
 			}
 		}
+		return index;
+	}
+
+	public int removefromStudents(int index,int clientId) {
 		if(index >= 0) {
 			clients.remove(index);
 			System.out.println(clientId + " 고객이 삭제되었습니다.");
+			return 1;
 		}
 		else {
 			System.out.println(clientId + " 고객이 존재하지 않습니다.");
-			return;}
+			return -1;
+		}
 	}
 
 	// 고객 정보를 조회하는 메소드
@@ -97,39 +117,28 @@ public class ClientManager {
 		System.out.print("수정할 고객의 id를 입력하세요.: ");
 		int clientId = sc.nextInt();
 		for(int i = 0; i < clients.size(); i++) {
-			ClientInput clientInput = clients.get(i);
-			if (clientInput.getId() == clientId) {
+			ClientInput client = clients.get(i);
+			if (client.getId() == clientId) {
 				int num = -1;
 				while (num != 5) {
-					System.out.println("Client Info Edit Menu");
-					System.out.println("1. Edit ID");
-					System.out.println("2. Edit Name");
-					System.out.println("3. Edit Account");
-					System.out.println("4. Edit Money");
-					System.out.println("5. Exit");
-					System.out.println("Select one number between 1 ~ 5");
+					showEditMenu();
 					num = sc.nextInt();
-					if( num == 1) {
-						System.out.print("Client ID : ");
-						int id = sc.nextInt();
-						clientInput.setId(id);
+					switch (num) {
+					case 1:
+						client.setClientId(sc);
+						break;
+					case 2:
+						client.setClientName(sc);
+						break;
+					case 3:
+						client.setClientAccount(sc);
+						break;
+					case 4:
+						client.setClientMoney(sc);
+						break;
+					default :
+						continue;
 					}
-					else if ( num == 2) {
-						System.out.print("Client Name : ");
-						String name = sc.next();
-						clientInput.setName(name);
-					}
-					else if (num == 3) {
-						System.out.print("Client Account : ");
-						int account = sc.nextInt();
-						clientInput.setAccount(account);
-					}
-					else if(num == 4) {
-						System.out.print("Client Money: ");
-						int money = sc.nextInt();
-						clientInput.setMoney(money);
-					}
-					else continue;
 				}
 				break;
 			}
@@ -175,5 +184,15 @@ public class ClientManager {
 			System.out.println("잘못된 번호입니다.");
 		}
 
+	}
+
+	public void showEditMenu() {
+		System.out.println("Client Info Edit Menu");
+		System.out.println("1. Edit ID");
+		System.out.println("2. Edit Name");
+		System.out.println("3. Edit Account");
+		System.out.println("4. Edit Money");
+		System.out.println("5. Exit");
+		System.out.println("Select one number between 1 ~ 5");
 	}
 }
