@@ -16,7 +16,7 @@ public abstract class TeenageClient extends Client {
 
 
 	public void setPhoneParents(String phoneParents) throws ParentPhoneFormatException{
-		if(!phoneParents.contains("-") && !phoneParents.equals("없음")) {
+		if(!phoneParents.contains("-")) {
 			throw new ParentPhoneFormatException();
 		}
 		this.phoneParents = phoneParents;
@@ -63,7 +63,6 @@ public abstract class TeenageClient extends Client {
 						this.setPhoneParents(phone);
 					} catch (ParentPhoneFormatException e) {
 						System.out.print(" '-'기호를 넣고 입력해주세요. ");
-						e.printStackTrace();
 					}
 				}
 				break;
@@ -73,7 +72,6 @@ public abstract class TeenageClient extends Client {
 					this.setPhoneParents("없음");
 				} catch (ParentPhoneFormatException e) {
 					this.phoneParents = "없음";
-					e.printStackTrace();
 				}
 
 
