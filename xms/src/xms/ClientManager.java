@@ -75,7 +75,7 @@ public class ClientManager {
 		System.out.print("삭제할 고객의 id를 입력하세요.: ");
 		int clientId = sc.nextInt();
 		int index = findIndex(clientId);
-		removefromStudents(index, clientId);
+		removefromclients(index, clientId);
 	}
 
 	public int findIndex(int clientId) {
@@ -89,7 +89,7 @@ public class ClientManager {
 		return index;
 	}
 
-	public int removefromStudents(int index,int clientId) {
+	public int removefromclients(int index,int clientId) {
 		if(index >= 0) {
 			clients.remove(index);
 			System.out.println(clientId + " 고객이 삭제되었습니다.");
