@@ -9,7 +9,7 @@ public abstract class TeenageClient extends Client {
 	protected String schoolName;
 	protected String phoneTeacher;
 
-	
+
 	public String getPhoneParents() {
 		return phoneParents;
 	}
@@ -45,10 +45,10 @@ public abstract class TeenageClient extends Client {
 	public TeenageClient(ClientKind kind) {
 		super(kind);
 	}
-	
+
 	public abstract void getUserInput(Scanner sc);
 	public abstract void printInfo();
-	
+
 	public void setClientParentPhonewithYN(Scanner sc) {
 		char answer = 'x';
 		while (answer != 'Y' && answer != 'y' && answer != 'N' && answer != 'n') {
@@ -81,13 +81,13 @@ public abstract class TeenageClient extends Client {
 			}
 		}
 	}
-	
+
 	public void setClientSchoolName(Scanner sc) {
 		System.out.print("등록할 고객이 재학 중인 학교를 입력하세요.: ");
 		String schoolName = sc.next();
 		this.setSchoolName(schoolName);
 	}
-	
+
 	public void setClientPhoneTeacher(Scanner sc) {
 		System.out.print("등록할 고객의 선생님 전화번호를 입력하세요.: ");
 		String phoneTeacher = sc.next();

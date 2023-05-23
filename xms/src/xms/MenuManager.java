@@ -7,14 +7,14 @@ import java.util.Scanner;
  *학생 은행 프로그램의 메뉴 화면
  */
 public class MenuManager {
-	
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		ClientManager clientManager = new ClientManager(sc);
 		selectMenu(sc,clientManager);
 		System.out.println("End the program");
 	}
-	
+
 	public static void selectMenu(Scanner sc, ClientManager clientManager) {
 		int num = 0;
 		while(num != 6) {
@@ -46,7 +46,7 @@ public class MenuManager {
 					sc.next();
 				}
 				num = -1;
-				
+
 			}
 		}
 	}
