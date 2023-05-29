@@ -1,10 +1,10 @@
 package xms;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import client.Client;
 import client.ClientInput;
 import client.ClientKind;
 import client.ElementarySchoolClient;
@@ -12,11 +12,16 @@ import client.HighSchoolClient;
 import client.MiddleSchoolClient;
 import client.UniversityClient;
 
-public class ClientManager {
+public class ClientManager implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4505220642965034818L;
 
 	ArrayList<ClientInput> clients = new ArrayList<ClientInput>();
 
-	Scanner sc;
+	transient Scanner sc;  //transient 타입은 파일에 저장하지 않음
 	ClientManager(Scanner sc) {
 		this.sc = sc;
 	}

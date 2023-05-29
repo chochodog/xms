@@ -6,4 +6,5 @@
  *
  */
 module xms {
+	requires java.logging;
 }
