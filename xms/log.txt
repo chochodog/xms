@@ -1,6 +1,0 @@
-5월 29, 2023 3:26:17 오후 log.EventLogger log
-정보: add a client
-5월 29, 2023 3:26:36 오후 log.EventLogger log
-정보: add a client
-5월 29, 2023 3:26:37 오후 log.EventLogger log
-정보: view a client

@@ -7,4 +7,5 @@
  */
 module xms {
 	requires java.logging;
+	requires java.desktop;
 }
