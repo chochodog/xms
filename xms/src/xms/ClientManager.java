@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import client.Client;
 import client.ClientInput;
 import client.ClientKind;
 import client.ElementarySchoolClient;
@@ -189,6 +190,14 @@ public class ClientManager implements Serializable{
 			System.out.println("잘못된 번호입니다.");
 		}
 
+	}
+	
+	public int size() {
+		return clients.size();
+	}
+	
+	public ClientInput get(int index) {
+		return (Client) clients.get(index);
 	}
 
 	public void showEditMenu() {

@@ -7,9 +7,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class ClientAdder extends JFrame {
-
-	public ClientAdder() {
+public class ClientAdder extends JPanel {
+	WindowFrame frame;
+	
+	public ClientAdder(WindowFrame frame) {
+		this.frame = frame;
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		// 위 두줄 대신에 JPanel panel = new JPanel(new SpringLayout()); 으로 대체해도 가능함
@@ -41,10 +43,8 @@ public class ClientAdder extends JFrame {
 
 		SpringUtilities.makeCompactGrid(panel, 4, 2, 6, 6, 6, 6);
 
-		this.setContentPane(panel);
-		this.setSize(300, 500);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setTitle("Client Adder");
+		this.add(panel);
+
 		this.setVisible(true);
 
 	}

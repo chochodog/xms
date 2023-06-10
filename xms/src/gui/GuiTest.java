@@ -3,9 +3,12 @@ package gui;
 public class GuiTest {
 
 	public static void main(String[] args) {
-		//MenuSelection menuselection = new MenuSelection();
+		
+		//WindowFrame frame = new WindowFrame();
+		//MenuSelection menuSelection = new MenuSelection();
 		//ClientAdder clientAdder = new ClientAdder();
-		ClientViewer clientview = new ClientViewer();
+		//ClientViewer clientViewer = new ClientViewer();
+
 	}
 
 }
